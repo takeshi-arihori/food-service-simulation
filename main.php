@@ -1,17 +1,15 @@
 <?php
 
-require_once 'Interfaces/Engine.php';
-require_once 'Engines/GasolineEngine.php';
-require_once 'Engines/ElectricEngine.php';
-require_once 'Cars/Car.php';
-require_once 'Cars/GasCar.php';
-require_once 'Cars/ElectricCar.php';
+require 'vendor/autoload.php';
 
-$gasCar = new Cars\GasCar('Toyota');
-$electricCar = new Cars\ElectricCar('Tesla');
+use Cars\GasCar;
+use Cars\ElectricCar;
 
-echo $gasCar->drive(); // Output: Driving the gas car...
-echo $gasCar->start(); // Output: Starting the gasoline engine...
+$gasCar = new GasCar('Toyota');
+$electricCar = new ElectricCar('Tesla');
 
-echo $electricCar->drive(); // Output: Driving the electric car...
-echo $electricCar->start(); // Output: Starting the electric engine...
+echo $gasCar->drive() . PHP_EOL;
+echo $gasCar->start() . PHP_EOL;
+
+echo $electricCar->drive() . PHP_EOL;
+echo $electricCar->start() . PHP_EOL;

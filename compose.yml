@@ -11,6 +11,9 @@ services:
     # 依存関係を設定
     depends_on:
       - app
+    networks:
+      - mynetwork
+
   # PHP-FPMの定義
   app:
     build:
@@ -24,6 +27,9 @@ services:
     env_file:
       # 環境変数を定義したファイルのパス
       - .env
+    networks:
+      - mynetwork
+
   # MySQLの定義
   mysql:
     # MySQL コンテナに使用するイメージを指定
@@ -41,6 +47,28 @@ services:
       # - ./docker/mysql/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+
 volumes:
   # 名前付きボリュームの作成
   mysqldata:
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -42,4 +42,12 @@ docker-compose exec mysql /bin/bash
 mysql -u root -p
 ```
 
-####
+#### phpMyAdmin にアクセス
+
+```
+http://localhost:8080
+```
+
+- サーバ: mysql
+- ユーザ名: root
+- パスワード: password（.env ファイルで設定したもの）

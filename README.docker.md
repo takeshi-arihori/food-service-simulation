@@ -27,3 +27,19 @@ Web サーバ： Nginx 1.25.0
 ├── docker-compose.yml
 └── .env
 ```
+
+## Docker 内で DB 操作
+
+#### MySQL コンテナに入る
+
+```bash
+docker-compose exec mysql /bin/bash
+```
+
+#### MySQL にログイン
+
+```
+mysql -u root -p
+```
+
+####

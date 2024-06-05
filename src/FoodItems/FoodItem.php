@@ -1,6 +1,6 @@
 <?php
 
-namespace FoodItem;
+namespace FoodItems;
 
 /**
  * 各食品アイテムの名称、説明、価格といった基本情報をカプセル化する抽象クラス

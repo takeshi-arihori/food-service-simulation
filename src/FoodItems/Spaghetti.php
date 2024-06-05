@@ -1,21 +1,21 @@
 <?php
 
-namespace FoodItem;
+namespace FoodItems;
 
 /**
- * チーズバーガーの名称、説明、価格といった基本情報をカプセル化するクラス
+ * スパゲッティの名称、説明、価格といった基本情報をカプセル化するクラス
  * （FoodItem::getCategory()）や定数クラス変数（FoodItem::CATEGORY）を通じて取得
  */
-class CheeseBurger extends FoodItem
+class Spaghetti extends FoodItem
 {
-  public const CATEGORY = 'Burger';
+  const CATEGORY = 'Spaghetti';
 
   public function __construct()
   {
     parent::__construct(
-      'Cheese Burger',
-      'チーズバーガーの説明',
-      300
+      'Spaghetti',
+      'スパゲッティの説明',
+      800
     );
   }
 

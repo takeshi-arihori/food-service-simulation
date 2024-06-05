@@ -1,6 +1,6 @@
 <?php
 
-namespace FoodItem;
+namespace FoodItems;
 
 /**
  * ハワイアンピザの名称、説明、価格といった基本情報をカプセル化するクラス
@@ -8,7 +8,7 @@ namespace FoodItem;
  */
 class HawaiianPizza extends FoodItem
 {
-  public const CATEGORY = 'Pizza';
+  const CATEGORY = 'Pizza';
 
   public function __construct()
   {

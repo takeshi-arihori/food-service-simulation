@@ -1,29 +1,52 @@
 <?php
 
+// オートローダーの設定
 spl_autoload_extensions(".php");
-spl_autoload_register();
+spl_autoload_register(function ($class) {
+  $base_dir = __DIR__ . '/';
+  $file = $base_dir . str_replace('\\', '/', $class) . '.php';
+  if (file_exists($file)) {
+    require $file;
+  }
+});
 
-// FoodItemクラスのテスト
-$cheeseBurger = new FoodItem\CheeseBurger();
-echo 'CheeseBurger: ' . $cheeseBurger->getName() . ', ';
-echo 'Category: ' . FoodItem\CheeseBurger::getCategory() . ', ';
-echo 'Price: ' . $cheeseBurger->getPrice() . ', ';
-echo 'Description: ' . $cheeseBurger->getDescription() . ' ';
+use Persons\Employees\Chef;
+use Persons\Employees\Cashier;
+use Restaurants\Restaurant;
+use Persons\Customer;
+use FoodItems\CheeseBurger;
+use FoodItems\Fettuccine;
+use FoodItems\HawaiianPizza;
+use FoodItems\Spaghetti;
 
-// 改行
-echo '<br>';
+// クラスのインスタンス化
+$cheeseBurger = new CheeseBurger();
+$fettuccine = new Fettuccine();
+$hawaiianPizza = new HawaiianPizza();
+$spaghetti = new Spaghetti();
 
-$fettuccine = new FoodItem\Fettuccine();
-echo 'Fettuccine: ' . $fettuccine->getName() . ', ';
-echo 'Category: ' . FoodItem\Fettuccine::getCategory() . ', ';
-echo 'Price: ' . $fettuccine->getPrice() . ', ';
-echo 'Description: ' . $fettuccine->getDescription() . ' ';
+$invah = new Chef("Invah Lozano", 40, "Osaka", 1, 30);
+$nadia = new Cashier("Nadia Valentine", 21, "Tokyo", 1, 20);
 
-// 改行
-echo '<br>';
+$saizeriya = new Restaurant(
+  [
+    $cheeseBurger,
+    $fettuccine,
+    $hawaiianPizza,
+    $spaghetti
+  ],
+  [
+    $invah,
+    $nadia
+  ]
+);
 
-$hawaiianPizza = new FoodItem\HawaiianPizza();
-echo 'HawaiianPizza: ' . $hawaiianPizza->getName() . ', ';
-echo 'Category: ' . FoodItem\HawaiianPizza::getCategory() . ', ';
-echo 'Price: ' . $hawaiianPizza->getPrice() . ', ';
-echo 'Description: ' . $hawaiianPizza->getDescription() . ' ';
+$interestedTastesMap = [
+  "Margherita" => 1,
+  "CheeseBurger" => 2,
+  "Spaghetti" => 1
+];
+
+$tom = new Customer("Tom", 20, "Saitama", $interestedTastesMap);
+$invoice = $tom->order($saizeriya);
+$invoice->printInvoice();

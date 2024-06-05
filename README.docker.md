@@ -10,24 +10,6 @@ Web サーバ： Nginx 1.25.0
 
 - [参考](https://qiita.com/shikuno_dev/items/f236c8280bb745dd6fb4)
 
-## プロジェクト構成
-
-```
-.
-├── docker/
-│   ├── mysql/
-│   │   └── my.cnf
-│   ├── nginx/
-│   │   └── default.conf
-│   └── php/
-│       ├── Dockerfile
-│       └── php.ini
-├── src/
-│   └── index.php
-├── docker-compose.yml
-└── .env
-```
-
 ## Docker 内で DB 操作
 
 #### MySQL コンテナに入る
